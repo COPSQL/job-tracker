@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% from "_macros.html" import cell %}
+{% block content %}
+<div class="page-head"><h1>Dashboard</h1></div>
+<section class="stats">
+  <a href="{{ url_for('list_records', table='applications') }}"><strong>{{ counts.applications }}</strong> applications</a>
+  <a href="{{ url_for('list_records', table='jobs') }}"><strong>{{ counts.jobs }}</strong> jobs tracked</a>
+  <a href="{{ url_for('list_records', table='companies') }}"><strong>{{ counts.companies }}</strong> companies</a>
+  <a href="{{ url_for('list_records', table='contacts') }}"><strong>{{ counts.contacts }}</strong> contacts</a>
+</section>
+
+<div class="two-col">
+  <section class="card">
+    <h2>Applications by status</h2>
+    {% set biggest = by_status.values()|max or 1 %}
+    <ul class="bars">
+      {% for status, n in by_status.items() %}
+      <li>
+        <span class="pill s-{{ status|lower }}">{{ status }}</span>
+        <span class="bar"><i style="width: {{ (n / biggest * 100)|round|int }}%"></i></span>
+        <b>{{ n }}</b>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Latest applications</h2>
+    {% if recent %}
+    <ul class="recent">
+      {% for row in recent %}
+      <li>
+        <a href="{{ url_for('detail', table='applications', record_id=row.application_id) }}">{{ row.job_title }}</a>
+        <span class="muted">{{ row.company_name }} &middot; {{ row.application_date }}</span>
+        {{ cell('status', row) }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty">No applications yet. <a href="{{ url_for('new_record', table='applications') }}">Log your first one</a>.</p>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

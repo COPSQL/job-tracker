@@ -1,0 +1,12 @@
+{% macro cell(key, row) -%}
+{%- set v = row[key] -%}
+{%- if v is none or v == '' or v == [] -%}<span class="muted">&ndash;</span>
+{%- elif key == 'status' -%}<span class="pill s-{{ v|lower }}">{{ v }}</span>
+{%- elif key == 'requirements' -%}{% for s in v %}<span class="chip">{{ s }}</span>{% endfor %}
+{%- elif key == 'cover_letter_sent' -%}{{ 'Yes' if v else 'No' }}
+{%- elif key in ('website', 'job_url', 'linkedin_url') -%}<a href="{{ v }}" target="_blank" rel="noopener">{{ v|replace('https://', '')|replace('http://', '')|truncate(32) }}</a>
+{%- elif key == 'email' -%}<a href="mailto:{{ v }}">{{ v }}</a>
+{%- elif key == 'interview_data' -%}<pre class="json">{{ v|tojson(indent=2) }}</pre>
+{%- else -%}{{ v }}
+{%- endif -%}
+{%- endmacro %}

@@ -1,0 +1,33 @@
+{% from "_macros.html" import cell %}
+<div class="page-head">
+  <h1>{{ cfg.plural }}</h1>
+  <a class="btn" href="{{ url_for('new_record', table=table) }}">Add {{ cfg.singular|lower }}</a>
+</div>
+{% if rows %}
+<div class="table-wrap">
+  <table>
+    <thead><tr>
+      {% for key, label in cfg.columns %}<th>{{ label }}</th>{% endfor %}
+      <th><span class="sr">Actions</span></th>
+    </tr></thead>
+    <tbody>
+    {% for row in rows %}
+      {% set rid = row[cfg.pk] %}
+      <tr>
+        {% for key, label in cfg.columns %}<td>{{ cell(key, row) }}</td>{% endfor %}
+        <td class="actions">
+          <a href="{{ url_for('detail', table=table, record_id=rid) }}">View</a>
+          <a href="{{ url_for('edit_record', table=table, record_id=rid) }}">Edit</a>
+          <form method="post" action="{{ url_for('delete_record', table=table, record_id=rid) }}"
+                onsubmit='return confirm({{ ("Delete this " ~ cfg.singular|lower ~ "? " ~ cfg.cascade)|trim|tojson }})'>
+            <button class="link danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<p class="empty">No {{ cfg.plural|lower }} yet. <a href="{{ url_for('new_record', table=table) }}">Add the first one</a>.</p>
+{% endif %}

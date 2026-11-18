@@ -1,0 +1,107 @@
+:root {
+  --bg: #f4f6f7;
+  --surface: #ffffff;
+  --ink: #16242b;
+  --muted: #5d6f78;
+  --line: #d9e0e3;
+  --accent: #0e6e66;
+  --accent-ink: #ffffff;
+  --danger: #b3261e;
+  --radius: 6px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.5 "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid #7cc4bd; outline-offset: 2px;
+}
+.topbar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px;
+  padding: 12px 24px; background: var(--ink);
+}
+.brand { color: #fff; font: 700 1.15rem Georgia, "Times New Roman", serif; text-decoration: none; }
+.topbar nav { display: flex; flex-wrap: wrap; gap: 4px; }
+.topbar nav a { color: #c5d3d9; text-decoration: none; padding: 6px 12px; border-radius: var(--radius); }
+.topbar nav a:hover { color: #fff; }
+.topbar nav a.on { background: #fff; color: var(--ink); font-weight: 600; }
+main { max-width: 1100px; margin: 0 auto; padding: 24px; }
+h1 { font: 700 1.7rem Georgia, "Times New Roman", serif; margin: 0; }
+h2 { font-size: 1.1rem; margin: 0 0 12px; }
+.page-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; }
+.btn {
+  display: inline-block; background: var(--accent); color: var(--accent-ink); border: 0;
+  padding: 9px 18px; border-radius: var(--radius); font: inherit; font-weight: 600;
+  text-decoration: none; cursor: pointer;
+}
+.btn:hover { background: #0a5852; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+.muted { color: var(--muted); }
+.empty { color: var(--muted); padding: 24px 0; }
+.sr { position: absolute; left: -9999px; }
+
+.flash { padding: 10px 14px; border-radius: var(--radius); margin-bottom: 16px; background: #dff1ee; border: 1px solid #a9d6cf; }
+.flash.error { background: #fbe5e3; border-color: #efb5b0; color: var(--danger); }
+
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: .85rem; color: var(--muted); font-weight: 600; background: #f9fafb; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover { background: #fafcfc; }
+td.actions { white-space: nowrap; }
+td.actions a, td.actions form { display: inline; margin-right: 10px; }
+button.link { background: none; border: 0; padding: 0; font: inherit; color: var(--accent); cursor: pointer; text-decoration: underline; }
+button.link.danger { color: var(--danger); }
+
+.chip { display: inline-block; background: #e6eef0; padding: 1px 8px; border-radius: 10px; font-size: .85rem; margin: 0 4px 4px 0; }
+.chip.miss { background: #fbe5e3; color: var(--danger); }
+.pill { display: inline-block; padding: 1px 10px; border-radius: 10px; font-size: .85rem; font-weight: 600; background: #e6eef0; }
+.s-applied { background: #dbe8f7; color: #174a85; }
+.s-screening { background: #efe3f7; color: #5b2a86; }
+.s-interview { background: #fdf0cc; color: #7a5300; }
+.s-offer { background: #d6f0dd; color: #17602e; }
+.s-rejected { background: #fbe5e3; color: var(--danger); }
+.s-withdrawn { background: #e8e8e8; color: #555; }
+
+.form { max-width: 640px; }
+.field { margin-bottom: 16px; }
+.field label { display: block; font-weight: 600; margin-bottom: 4px; }
+.field label.check { font-weight: 500; display: flex; gap: 8px; align-items: center; }
+.req { font-weight: 400; color: var(--muted); font-size: .85rem; }
+input[type=text], input[type=number], input[type=date], input[type=email], input[type=url], input:not([type]), select, textarea {
+  width: 100%; padding: 8px 10px; border: 1px solid #b6c3c9; border-radius: var(--radius); font: inherit; background: #fff;
+}
+.has-error input, .has-error select, .has-error textarea { border-color: var(--danger); }
+.hint { color: var(--muted); font-size: .85rem; margin: 4px 0 0; }
+.error-text { color: var(--danger); font-size: .9rem; margin: 4px 0 0; }
+.form-actions { display: flex; gap: 16px; align-items: center; }
+
+.details { display: grid; grid-template-columns: 200px 1fr; gap: 10px 20px; margin: 0 0 16px; }
+.details dt { font-weight: 600; color: var(--muted); }
+.details dd { margin: 0; }
+pre.json { margin: 0; background: #f4f6f7; padding: 10px; border-radius: var(--radius); overflow-x: auto; font-size: .85rem; }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.stats a { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; text-decoration: none; color: var(--muted); }
+.stats strong { display: block; font: 700 2rem Georgia, serif; color: var(--ink); }
+.stats a:hover { border-color: var(--accent); }
+.two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+ul.bars, ul.recent, ol.matches { list-style: none; margin: 0; padding: 0; }
+.bars li { display: grid; grid-template-columns: 110px 1fr 28px; gap: 10px; align-items: center; margin-bottom: 10px; }
+.bar { display: block; height: 10px; background: #e6eef0; border-radius: 5px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); }
+.recent li { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.recent li:last-child { border-bottom: 0; }
+.matches li { margin-bottom: 14px; }
+.match-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin-bottom: 8px; }
+.match-head a { font-weight: 700; font-size: 1.1rem; }
+.pct { margin-left: auto; font: 700 1.4rem Georgia, serif; }
+
+@media (max-width: 600px) {
+  main { padding: 16px; }
+  .details { grid-template-columns: 1fr; gap: 2px; }
+  .details dd { margin-bottom: 10px; }
+}

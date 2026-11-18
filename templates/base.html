@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Job Tracker{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('dashboard') }}">Job Tracker</a>
+    <nav>
+      <a href="{{ url_for('dashboard') }}" class="{{ 'on' if request.path == '/' }}">Dashboard</a>
+      <a href="{{ url_for('list_records', table='companies') }}" class="{{ 'on' if request.path.startswith('/companies') }}">Companies</a>
+      <a href="{{ url_for('list_records', table='jobs') }}" class="{{ 'on' if request.path.startswith('/jobs') }}">Jobs</a>
+      <a href="{{ url_for('list_records', table='applications') }}" class="{{ 'on' if request.path.startswith('/applications') }}">Applications</a>
+      <a href="{{ url_for('list_records', table='contacts') }}" class="{{ 'on' if request.path.startswith('/contacts') }}">Contacts</a>
+      <a href="{{ url_for('job_match') }}" class="{{ 'on' if request.path.startswith('/job-match') }}">Job Match</a>
+    </nav>
+  </header>
+  <main>
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
