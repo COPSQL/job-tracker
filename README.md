@@ -38,4 +38,4 @@ AI_USAGE.md     GenAI usage documentation
 ```
 
 ## Demo video
-See `demo.mp4` (add your 3-7 minute recording to the repository root).
+See `demo.mov` (add your 3-7 minute recording to the repository root).
